@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Hangman Game - React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+🎮 This is a simple Hangman game built with React. Players have to guess a secret word by suggesting letters one at a time. If too many incorrect guesses are made, the player loses the game. 
 
-In the project directory, you can run:
+🚀 This project is containerized using Docker, making it easy to deploy and run in any environment.
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before running the project, make sure you have the following installed:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org/en/) (recommended version 18 or higher)
+- [Docker](https://www.docker.com/products/docker-desktop)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Clone the Repository
 
-### `npm run build`
+First, clone the repository to your local machine:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone (https://github.com/kmamaguana/my-hangman-game)
+cd hangman-react
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Local Setup without Docker (optional)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you prefer not to use Docker, you can run the project locally using Node.js.
 
-### `npm run eject`
+1. Install the dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Run the application in development mode:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The app will be available at `http://localhost:3000`.
 
-## Learn More
+### 3. Run with Docker
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If you'd like to run the project inside a Docker container, follow these steps:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Build the Docker image:
 
-### Code Splitting
+```bash
+docker build -t hangman-react .
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. Run the Docker container:
 
-### Analyzing the Bundle Size
+```bash
+docker run -p 3000:3000 hangman-react
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Access the app at `http://localhost:3000`.
 
-### Making a Progressive Web App
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **src/**: Contains all the source code of the application.
+- **public/**: Contains static files such as the `index.html` file and images of the hangman.
+- **Dockerfile**: Configuration file to build a Docker image of the app.
+- **.dockerignore**: List of files and directories to exclude from the Docker container (such as `node_modules`, `.git` files, etc.).
+- **package.json**: Node.js configuration file with project dependencies and scripts.
 
-### Advanced Configuration
+## Dockerfile Explanation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **FROM node:18-alpine**: Uses an official Node.js image (version 18, based on Alpine for a smaller size).
+- **WORKDIR /app**: Sets the working directory inside the container to `/app`.
+- **COPY package*.json ./**: Copies the `package.json` and `package-lock.json` files into the container.
+- **RUN npm install**: Installs the project dependencies.
+- **COPY . .**: Copies the rest of the project files into the container.
+- **RUN npm run build**: Builds the React app for production.
+- **EXPOSE 3000**: Exposes port 3000 so that the app can be accessed externally.
+- **CMD ["npm", "start"]**: Starts the application in development mode when the container is run.
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+💡 If you want to contribute to the project, feel free to create a **pull request**. Please ensure your code is functional, well-documented, and follows best practices.
 
-### `npm run build` fails to minify
+### Steps to contribute:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the repository.
+2. Create a descriptive branch name for your feature/bugfix.
+3. Make your changes.
+4. Create a pull request with a clear description of your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+### 🙏 Thank You for Checking Out the Project!
+
+We hope you enjoy playing the Hangman game. If you have any questions, issues, or suggestions, feel free to open an issue or contribute. 
+
+Happy coding! 👩‍💻👨‍💻
+```
